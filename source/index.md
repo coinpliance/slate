@@ -18,18 +18,13 @@ search: true
 
 Welcome to the Coinpliance API!
 
-For Reference: 
 
-BP = Bitpay 
-
-CP = Coinpliance
-
-# Bitpay
+# Merchants
 
 ## Create new Merchant
 
 ```shell
-curl -H "Content-type: application/json" --data-binary @$1 -u bitpayapi:(apiKey) -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:(id)
+curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(apiKey) -XPUT http://<companyname>:8501/<companyname>/api/merchants/<companyname>db:(id)
 
 ```
 
@@ -73,7 +68,7 @@ suspended | true/false
 ## Request Tier Upgrade
 
 ```shell
-curl -H "Content-type: application/json" --data-binary @$1 -u bitpayapi:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:$2
+curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://coinpliance.us/<companyname>/api/merchants/<companyname>db:$2
 
 ```
 
@@ -91,7 +86,7 @@ This endpoint sends a tier upgrade request to Coinpliance.
 
 ### PUT Request
 
-`PUT https://coinpliance.us/bitpay/merchants/<ID>`
+`PUT https://coinpliance.us/<companyname>/merchants/<ID>`
 
 ### Body Params
 
