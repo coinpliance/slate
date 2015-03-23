@@ -32,7 +32,7 @@ curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(
 
 ```json
 {
-  "moatId":"bitpaydb:150932"
+  "moatId":"<companyname>db:150932"
 }
 ```
 
@@ -40,7 +40,7 @@ This endpoint creates a new merchant in CP mapped to BP.
 
 ### HTTP Post
 
-`POST https://coinpliance.us/bitpay/merchants`
+`POST https://coinpliance.us/<companyname>/merchants`
 
 ### Post elements
 
