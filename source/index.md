@@ -99,7 +99,7 @@ appliedTier | the tier the merchant <ID> would like to go to
 Code | Description 
 ---- | -----------
 1010 | Holy crap something blew up. Abort
-1011 | No docs required required for this upgrade
+1011 | No docs required for this upgrade
 1012 | Docs already submitted for this possible upgrade 
 1013 | Invalid request to upgrade to a lower tier 
 1009 | Success 
