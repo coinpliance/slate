@@ -3,166 +3,109 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
+  - node
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
   - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the Coinpliance API!
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+For Reference: 
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
+BP = Bitpay 
 
-# Authentication
+CP = Coinpliance
 
-> To authorize, use this code:
+# Bitpay
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Create new Merchant
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
+curl -H "Content-type: application/json" --data-binary @$1 -u bitpayapi:(apiKey) -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:(id)
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "moatId":"bitpaydb:150932"
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint creates a new merchant in CP mapped to BP. 
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+### HTTP Post
 
-### HTTP Request
+`POST https://coinpliance.us/bitpay/merchants`
 
-`GET http://example.com/kittens/<ID>`
+### Post elements
 
-### URL Parameters
+Parameter |  Description
+--------- |  -----------
+merchant | merchant object 
+users | array of users associatied with that merchant
+
+### Merchant Object
+
+Parameter | Description
+--------- |  -----------
+name | Merchant Name (business)
+owners | array contaning owners for that merchant account {name, eid}
+address | address object 
+contactPhone | phone number
+website | url 
+industry | obvious 
+isNonprofit | true/false
+usTaxID | ein if supplied
+appliedTier | tier the merchant whishes to go to
+approvedTier | current Tier of the merchant (should be set to -1)
+suspended | true/false
+
+## Request Tier Upgrade
+
+```shell
+curl -H "Content-type: application/json" --data-binary @$1 -u bitpayapi:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:$2
+
+```
+
+
+> ---------------- Returns------------------
+
+```json
+{
+  "reasonCode": code,
+  "upgradeLink": "Some upgrade https link"
+}
+```
+
+This endpoint sends a tier upgrade request to Coinpliance. 
+
+### PUT Request
+
+`PUT https://coinpliance.us/bitpay/merchants/<ID>`
+
+### Body Params
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the cat to retrieve
+appliedTier | the tier the merchant <ID> would like to go to
+
+### Reason Codes
+
+Code | Description 
+---- | -----------
+1010 | Holy crap something blew up. Abort
+1011 | No docs required required for this upgrade
+1012 | Docs already submitted for this possible upgrade 
+1013 | Invalid request to upgrade to a lower tier 
+1009 | Success 
 
