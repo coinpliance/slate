@@ -49,16 +49,10 @@
 
 <p>Welcome to the Coinpliance API!</p>
 
-<p>For Reference: </p>
-
-<p>BP = Bitpay </p>
-
-<p>CP = Coinpliance</p>
-
-<h1 id="bitpay">Bitpay</h1>
+<h1 id="merchants">Merchants</h1>
 
 <h2 id="create-new-merchant">Create new Merchant</h2>
-<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u bitpayapi:<span class="o">(</span>apiKey<span class="o">)</span> -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:<span class="o">(</span>id<span class="o">)</span>
+<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XPUT http://&lt;companyname&gt;:8501/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;db:<span class="o">(</span>id<span class="o">)</span>
 
 </code></pre>
 
@@ -149,7 +143,7 @@
 </tbody></table>
 
 <h2 id="request-tier-upgrade">Request Tier Upgrade</h2>
-<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u bitpayapi:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://localhost:8501/bitpay/api/merchants/bitpaydb:<span class="nv">$2</span>
+<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u &lt;companyname&gt;api:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;db:<span class="nv">$2</span>
 
 </code></pre>
 
@@ -166,7 +160,7 @@
 
 <h3 id="put-request">PUT Request</h3>
 
-<p><code class="prettyprint">PUT https://coinpliance.us/bitpay/merchants/&lt;ID&gt;</code></p>
+<p><code class="prettyprint">PUT https://coinpliance.us/&lt;companyname&gt;/merchants/&lt;ID&gt;</code></p>
 
 <h3 id="body-params">Body Params</h3>
 
