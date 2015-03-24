@@ -119,23 +119,23 @@ curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET h
 ```json
 [
 	{
-		moat_id: '<companyname>:102103',
-		merchantGovTaxID: '123456789',
-		moatAppStatus: 'approved',
-		approvedTier: '2', 
-		requiredTier: '1',
-		website: 'www.example.com',
-		suspended: false
+		"moat_id": "<companyname>:102103",
+		"merchantGovTaxID": "123456789",
+		"moatAppStatus": "approved",
+		"approvedTier": "2", 
+		"requiredTier": "1",
+		"website": "www.example.com",
+		"suspended": false
 	},
 
 	{
-		moat_id: '<companyname>:102103',
-		merchantGovTaxID: '123456789',
-		moatAppStatus: 'approved',
-		approvedTier: '2', 
-		requiredTier: '1',
-		website: 'www.example.com',
-		suspended: false
+		"moat_id": "<companyname>:102103",
+		"merchantGovTaxID": "123456789",
+		"moatAppStatus": "approved",
+		"approvedTier": "2", 
+		"requiredTier": "1",
+		"website": "www.example.com",
+		"suspended": false
 	}
 ]
 
@@ -170,13 +170,13 @@ Returns details for the specific merchant.
 
 ```json
 	{
-		moat_id: '<companyname>:<cpID>',
-		merchantGovTaxID: '123456789',
-		moatAppStatus: 'approved',
-		approvedTier: '2', 
-		requiredTier: '1',
-		website: 'www.example.com',
-		suspended: false
+		"moat_id": "<companyname>:<cpID>",
+		"merchantGovTaxID": "123456789",
+		"moatAppStatus": "approved",
+		"approvedTier": "2", 
+		"requiredTier": "1",
+		"website": "www.example.com",
+		"suspended": false
 	}
 ```
 
