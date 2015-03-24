@@ -7,7 +7,7 @@ language_tabs:
 
 toc_footers:
   - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
 
@@ -24,7 +24,7 @@ Welcome to the Coinpliance API!
 ## Create new Merchant
 
 ```shell
-curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(apiKey) -XPUT http://<companyname>:8501/<companyname>/api/merchants/<companyname>db:(id)
+curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(apiKey) -XPUT https://<companyname>:8501/<companyname>/api/merchants/<companyname>db:(id)
 
 ```
 
@@ -38,7 +38,7 @@ curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(
 
 This endpoint creates a new merchant in CP mapped to BP. 
 
-### HTTP Post
+### https Post
 
 `POST https://coinpliance.us/<companyname>/merchants`
 
@@ -68,7 +68,7 @@ suspended | true/false
 ## Request Tier Upgrade
 
 ```shell
-curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:aee65f98-4947-4f29-a1e5-461c6fa002ba -XPUT http://coinpliance.us/<companyname>/api/merchants/<companyname>db:$2
+curl -H "Content-type: application/json" --data-binary @$1 -u <companyname>api:(apiKey) -XPUT https://coinpliance.us/<companyname>/api/merchants/<companyname>db:$2
 
 ```
 
@@ -103,4 +103,91 @@ Code | Description
 1012 | Docs already submitted for this possible upgrade 
 1013 | Invalid request to upgrade to a lower tier 
 1009 | Success 
+
+
+
+##Get Recent Merchants 
+
+
+```shell 
+curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET https://coinpliance.us/bitpay/api/merchants
+
+```
+
+> ---------------- Returns------------------
+
+```json
+[
+	{
+		moat_id: '<companyname>:102103',
+		merchantGovTaxID: '123456789',
+		moatAppStatus: 'approved',
+		approvedTier: '2', 
+		requiredTier: '1',
+		website: 'www.example.com',
+		suspended: false
+	},
+
+	{
+		moat_id: '<companyname>:102103',
+		merchantGovTaxID: '123456789',
+		moatAppStatus: 'approved',
+		approvedTier: '2', 
+		requiredTier: '1',
+		website: 'www.example.com',
+		suspended: false
+	}
+]
+
+```
+
+
+```node
+
+```
+
+### GET Request
+
+`GET https://coinpliance.us/<companyname>/api/merchants`
+
+
+Returns all the merchants who have been updated via the coinpliance UI within the last 30 minutes.
+
+## Get Recent 
+
+`GET https://coinpliance.us/<companyname>/api/merchants/<companyname>:<coinplianceID>`
+
+
+Returns details for the specific merchant.
+
+
+```shell
+
+
+```
+
+> ---------------- Returns------------------
+
+```json
+	{
+		moat_id: '<companyname>:<cpID>',
+		merchantGovTaxID: '123456789',
+		moatAppStatus: 'approved',
+		approvedTier: '2', 
+		requiredTier: '1',
+		website: 'www.example.com',
+		suspended: false
+	}
+```
+
+```node
+
+```
+
+### GET Request
+
+`GET https://coinpliance.us/<companyname>/api/merchants/<companyname>:<coinplianceID>`
+
+
+
 
