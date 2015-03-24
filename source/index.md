@@ -154,7 +154,7 @@ Returns all the merchants who have been updated via the coinpliance UI within th
 
 Name | Description | optional
 ---- | ----------- | --------
-moat_id | <companyname> + : + coinpliance ID. Is the reference to the merchant in coinpliance. | no 
+moat_id | companyname + : + coinpliance ID. Is the reference to the merchant in coinpliance. | no 
 merchantGovTaxID | the Tax ID for the merchant if it has been submitted otherwise null. | yes
 moatAppStatus | the processing status of the merchant. | no
 approvedTier | the tier at which the merchant is cleard to process at. | no
@@ -190,6 +190,9 @@ curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET h
 ```node
 
 ```
+
+Returns values are in the same format as get recent. 
+
 
 ### GET Request
 
