@@ -37,10 +37,6 @@
         <ul class="search-results"></ul>
       <div id="toc">
       </div>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
@@ -207,7 +203,7 @@
 </tbody></table>
 
 <h2 id="get-recent-merchants">Get Recent Merchants</h2>
-<pre><code class="highlight shell">curl -k -H <span class="s2">"Content-type: application/json"</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XGET https://coinpliance.us/bitpay/api/merchants
+<pre><code class="highlight shell">curl -k -H <span class="s2">"Content-type: application/json"</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XGET https://coinpliance.us/&lt;companyname&gt;/api/merchants
 
 </code></pre>
 
@@ -246,13 +242,57 @@
 
 <p>Returns all the merchants who have been updated via the coinpliance UI within the last 30 minutes.</p>
 
-<h2 id="get-recent">Get Recent</h2>
+<h3 id="return-values">Return Values</h3>
 
-<p><code class="prettyprint">GET https://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;:&lt;coinplianceID&gt;</code></p>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>optional</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>moat_id</td>
+<td><companyname> + : + coinpliance ID. Is the reference to the merchant in coinpliance.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>merchantGovTaxID</td>
+<td>the Tax ID for the merchant if it has been submitted otherwise null.</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>moatAppStatus</td>
+<td>the processing status of the merchant.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>approvedTier</td>
+<td>the tier at which the merchant is cleard to process at.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>requiredTier</td>
+<td>the tier the merchant must be at to process funds.</td>
+<td>no</td>
+</tr>
+<tr>
+<td>website</td>
+<td>the merchants website</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>suspended</td>
+<td>True if merchant is suspended. False otherwise</td>
+<td>no</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-specific">Get Specific</h2>
 
 <p>Returns details for the specific merchant.</p>
 <pre><code class="highlight shell">
-
+curl -k -H <span class="s2">"Content-type: application/json"</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XGET https://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;:&lt;coinplianceID&gt;
 </code></pre>
 
 <blockquote>
