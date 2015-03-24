@@ -39,7 +39,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -52,7 +52,98 @@
 <h1 id="merchants">Merchants</h1>
 
 <h2 id="create-new-merchant">Create new Merchant</h2>
-<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XPUT http://&lt;companyname&gt;:8501/&lt;companyname&gt;/&gt;apikey&gt; -XPUT http://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;db:<span class="nv">$2</span>
+<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XPUT https://&lt;companyname&gt;:8501/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;db:<span class="o">(</span>id<span class="o">)</span>
+
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">{</span><span class="w">
+  </span><span class="s2">"moatId"</span><span class="p">:</span><span class="s2">"&lt;companyname&gt;db:150932"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>This endpoint creates a new merchant in CP mapped to BP. </p>
+
+<h3 id="https-post">https Post</h3>
+
+<p><code class="prettyprint">POST https://coinpliance.us/&lt;companyname&gt;/merchants</code></p>
+
+<h3 id="post-elements">Post elements</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>merchant</td>
+<td>merchant object</td>
+</tr>
+<tr>
+<td>users</td>
+<td>array of users associatied with that merchant</td>
+</tr>
+</tbody></table>
+
+<h3 id="merchant-object">Merchant Object</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>Merchant Name (business)</td>
+</tr>
+<tr>
+<td>owners</td>
+<td>array contaning owners for that merchant account {name, eid}</td>
+</tr>
+<tr>
+<td>address</td>
+<td>address object</td>
+</tr>
+<tr>
+<td>contactPhone</td>
+<td>phone number</td>
+</tr>
+<tr>
+<td>website</td>
+<td>url</td>
+</tr>
+<tr>
+<td>industry</td>
+<td>obvious</td>
+</tr>
+<tr>
+<td>isNonprofit</td>
+<td>true/false</td>
+</tr>
+<tr>
+<td>usTaxID</td>
+<td>ein if supplied</td>
+</tr>
+<tr>
+<td>appliedTier</td>
+<td>tier the merchant whishes to go to</td>
+</tr>
+<tr>
+<td>approvedTier</td>
+<td>current Tier of the merchant (should be set to -1)</td>
+</tr>
+<tr>
+<td>suspended</td>
+<td>true/false</td>
+</tr>
+</tbody></table>
+
+<h2 id="request-tier-upgrade">Request Tier Upgrade</h2>
+<pre><code class="highlight shell">curl -H <span class="s2">"Content-type: application/json"</span> --data-binary @<span class="nv">$1</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XPUT https://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;db:<span class="nv">$2</span>
 
 </code></pre>
 
@@ -114,6 +205,75 @@
 <td>Success</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-recent-merchants">Get Recent Merchants</h2>
+<pre><code class="highlight shell">curl -k -H <span class="s2">"Content-type: application/json"</span> -u &lt;companyname&gt;api:<span class="o">(</span>apiKey<span class="o">)</span> -XGET https://coinpliance.us/bitpay/api/merchants
+
+</code></pre>
+
+<blockquote>
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;- Returns&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+</blockquote>
+<pre><code class="highlight json"><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="err">moat_id</span><span class="p">:</span><span class="w"> </span><span class="err">'&lt;companyname&gt;:</span><span class="mi">102103</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">merchantGovTaxID</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">123456789</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">moatAppStatus</span><span class="p">:</span><span class="w"> </span><span class="err">'approved'</span><span class="p">,</span><span class="w">
+        </span><span class="err">approvedTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">requiredTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">website</span><span class="p">:</span><span class="w"> </span><span class="err">'www.example.com'</span><span class="p">,</span><span class="w">
+        </span><span class="err">suspended</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="p">{</span><span class="w">
+        </span><span class="err">moat_id</span><span class="p">:</span><span class="w"> </span><span class="err">'&lt;companyname&gt;:</span><span class="mi">102103</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">merchantGovTaxID</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">123456789</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">moatAppStatus</span><span class="p">:</span><span class="w"> </span><span class="err">'approved'</span><span class="p">,</span><span class="w">
+        </span><span class="err">approvedTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">requiredTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">website</span><span class="p">:</span><span class="w"> </span><span class="err">'www.example.com'</span><span class="p">,</span><span class="w">
+        </span><span class="err">suspended</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
+</span></code></pre>
+<pre><code class="highlight plaintext">
+</code></pre>
+
+<h3 id="get-request">GET Request</h3>
+
+<p><code class="prettyprint">GET https://coinpliance.us/&lt;companyname&gt;/api/merchants</code></p>
+
+<p>Returns all the merchants who have been updated via the coinpliance UI within the last 30 minutes.</p>
+
+<h2 id="get-recent">Get Recent</h2>
+
+<p><code class="prettyprint">GET https://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;:&lt;coinplianceID&gt;</code></p>
+
+<p>Returns details for the specific merchant.</p>
+<pre><code class="highlight shell">
+
+</code></pre>
+
+<blockquote>
+<p>&mdash;&mdash;&mdash;&mdash;&mdash;- Returns&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;</p>
+</blockquote>
+<pre><code class="highlight json"><span class="w">    </span><span class="p">{</span><span class="w">
+        </span><span class="err">moat_id</span><span class="p">:</span><span class="w"> </span><span class="err">'&lt;companyname&gt;:&lt;cpID&gt;'</span><span class="p">,</span><span class="w">
+        </span><span class="err">merchantGovTaxID</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">123456789</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">moatAppStatus</span><span class="p">:</span><span class="w"> </span><span class="err">'approved'</span><span class="p">,</span><span class="w">
+        </span><span class="err">approvedTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">2</span><span class="err">'</span><span class="p">,</span><span class="w"> 
+        </span><span class="err">requiredTier</span><span class="p">:</span><span class="w"> </span><span class="err">'</span><span class="mi">1</span><span class="err">'</span><span class="p">,</span><span class="w">
+        </span><span class="err">website</span><span class="p">:</span><span class="w"> </span><span class="err">'www.example.com'</span><span class="p">,</span><span class="w">
+        </span><span class="err">suspended</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<pre><code class="highlight plaintext">
+</code></pre>
+
+<h3 id="get-request">GET Request</h3>
+
+<p><code class="prettyprint">GET https://coinpliance.us/&lt;companyname&gt;/api/merchants/&lt;companyname&gt;:&lt;coinplianceID&gt;</code></p>
 
       </div>
       <div class="dark-box">
