@@ -5,9 +5,6 @@ language_tabs:
   - shell
   - node
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
 
@@ -110,7 +107,7 @@ Code | Description
 
 
 ```shell 
-curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET https://coinpliance.us/bitpay/api/merchants
+curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET https://coinpliance.us/<companyname>/api/merchants
 
 ```
 
@@ -153,17 +150,27 @@ curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET h
 
 Returns all the merchants who have been updated via the coinpliance UI within the last 30 minutes.
 
-## Get Recent 
+###Return Values 
 
-`GET https://coinpliance.us/<companyname>/api/merchants/<companyname>:<coinplianceID>`
+Name | Description | optional
+---- | ----------- | --------
+moat_id | <companyname> + : + coinpliance ID. Is the reference to the merchant in coinpliance. | no 
+merchantGovTaxID | the Tax ID for the merchant if it has been submitted otherwise null. | yes
+moatAppStatus | the processing status of the merchant. | no
+approvedTier | the tier at which the merchant is cleard to process at. | no
+requiredTier | the tier the merchant must be at to process funds. | no 
+website | the merchants website | yes
+suspended | True if merchant is suspended. False otherwise | no
 
+
+## Get Specific
 
 Returns details for the specific merchant.
 
 
 ```shell
 
-
+curl -k -H "Content-type: application/json" -u <companyname>api:(apiKey) -XGET https://coinpliance.us/<companyname>/api/merchants/<companyname>:<coinplianceID>
 ```
 
 > ---------------- Returns------------------
